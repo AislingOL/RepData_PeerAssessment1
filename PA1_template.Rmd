@@ -22,12 +22,14 @@ knitr::opts_chunk$set(echo = TRUE)
 Install packages
 ```{r}
 #install.packages("tidyverse")
+install.packages("knitr")
 ```
 
 ## Loading and preprocessing the data
 
 ```{r, echo = TRUE}
 library(tidyverse)
+library(knitr)
 ```
 
 
@@ -82,6 +84,7 @@ Generating a histogram of this data
 ggplot(sum_steps, aes(x = daily_steps)) +
      geom_histogram( binwidth = 1000, color="darkblue", fill="lightblue") +
      labs(title = "Histogram - Total Steps Taken per Day", x = "Steps per day", y = "Frequency")
+
 ```
 ### 3.Calculate and report the mean and median of the total number of steps taken per day
 
@@ -112,7 +115,7 @@ head(interval_steps, 10) # viewing section of results
 ```
 
 Plotting the aggregated steps by interval
-```{r, echo = TRUE}
+```{r, echo = TRUE, include = TRUE}
 ggplot(interval_steps, aes(x = interval, y = steps)) + 
      geom_line(col = "darkblue") + 
      labs(title = "Time Series: Average Daily Activity Pattern - Steps per Interval", x = "Interval", y = "Steps")
@@ -171,7 +174,7 @@ sum_new_steps
 
 Generating a histogram of this data
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, include = TRUE}
 ggplot(sum_new_steps, aes(x = new_daily_steps)) +
     geom_histogram( binwidth = 1000, color="darkblue", fill="lightblue") +
     labs(title = "Histogram - Total Steps Taken per Day", x = "Steps per day", y = "Frequency")
@@ -211,7 +214,7 @@ head(weekday_data,10) # viewing a section of the data
 
 ### 2.Make a panel plot containing a time series plot (i.e. type = "l"\color{red}{\verb|type = "l"|}type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, include = TRUE}
 weekday_steps <- aggregate(steps ~ interval + day_type, data = weekday_data, FUN = mean)
 ggplot(weekday_steps, aes(x = interval, y = steps)) + 
    geom_line(col = "darkblue") + 
